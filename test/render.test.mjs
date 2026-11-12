@@ -159,6 +159,8 @@ test('reader renders three panes and evidence', () => {
   assert.match(html, /8–12 万元/)
   assert.match(html, /研读问答/)
   assert.match(html, /TCO 交叉点/)
+  assert.match(html, /A\+/)
+  assert.match(html, /15px/)
 })
 
 test('writer renders editor with report content', () => {

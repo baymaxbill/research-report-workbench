@@ -9,6 +9,7 @@
 - **资料台账**：上传 `txt / md / docx / pdf`、粘贴正文、抓取用户给定的网页（含公众号文章 URL）。
 - **PDF 文本清洗**：pdfjs 按坐标还原行；合并竖排标题，剔除页眉页脚、分析师姓名/工号/邮箱、图表目录页，以及图表内部的坐标轴文字。
 - **PDF 圈选**：阅读台直接显示 PDF 页（页面图 + 透明文字层），拖选文字后在中间「研读问答」里回答，带 `[bN]` 证据。
+- **阅读字号**：正文栏 A− / A+，12–24px 可调，默认 15px，并记住上次字号。
 - **自动图表库**：上传/重新解析 PDF 时，按「图表 N：标题」到「资料来源」定位图表，2 倍渲染裁剪为 PNG；按上传文档归档到「图表库」，可复制、预览、删除。
 - **五板块摘要**：行业逻辑与框架、技术原理、商业逻辑、财务框架与预测、技术发展前景；每张卡带段落证据，确认后才入库。
 - **驳回与重写**：驳回时填写原因，AI 按原因重写该卡。
@@ -32,11 +33,11 @@
 
 ### 从 GitHub Release（推荐）
 
-1. 在仓库的 **Releases** 下载 `research-report-workbench-0.12.0.tgz`。
+1. 在仓库的 **Releases** 下载 `research-report-workbench-0.12.1.tgz`。
 2. 安装：
 
 ```powershell
-dsh plugin add C:\path\to\research-report-workbench-0.12.0.tgz
+dsh plugin add C:\path\to\research-report-workbench-0.12.1.tgz
 ```
 
 如果 `dsh` 不在 PATH，可以用 DSH 安装目录里的 `resources/runtime/cli/bin/dsh.cmd`。
@@ -55,7 +56,7 @@ cd research-report-workbench
 npm install
 npm test
 npm pack
-dsh plugin add .\research-report-workbench-0.12.0.tgz
+dsh plugin add .\research-report-workbench-0.12.1.tgz
 ```
 
 > 不要把源码目录直接 `dsh plugin add`：宿主会把目录移进 profile。开发时先 `npm pack`，再装 tgz。
@@ -98,7 +99,7 @@ GitHub Release 附件用：
 
 ```powershell
 npm pack
-# 上传 research-report-workbench-0.12.0.tgz
+# 上传 research-report-workbench-0.12.1.tgz
 ```
 
 ## 结构
