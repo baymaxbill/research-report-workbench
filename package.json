@@ -1,6 +1,6 @@
 {
   "name": "research-report-workbench",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "研报撰写工作台：研报拆解、PDF 圈选问答、五板块卡片、图表库与行业报告撰写（DSH 插件）",
   "type": "module",
   "main": "lib/index.js",

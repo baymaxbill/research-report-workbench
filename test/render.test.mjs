@@ -288,3 +288,13 @@ test('chart library renders document folders and empty state', () => {
   assert.match(html, /全部图表/)
   assert.match(html, /图表库还是空的/)
 })
+
+test('moki export modal renders folder picker surface', () => {
+  const html = render(fakeReact.createElement(mod.__components.MokiExportModal, {
+    source: { id: 's1', title: '测试研报' },
+    onClose() {},
+    notify() {},
+  }))
+  assert.match(html, /导出到 MOKI 资料库/)
+  assert.match(html, /MOKI 目录/)
+})
