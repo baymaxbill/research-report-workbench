@@ -38,7 +38,7 @@ test('report generation can use confirmed web search and refuses no-source reque
       body: JSON.stringify({ title: '无来源测试', useMaterials: false, allowWebSearch: false }),
     })
     assert.equal(blocked.status, 400)
-    assert.equal((await blocked.json()).error.code, 'sources_required')
+    assert.equal((await blocked.json()).error.code, 'materials_required')
 
     const generatedRes = await fetch(base + '/reports/generate', {
       method: 'POST',

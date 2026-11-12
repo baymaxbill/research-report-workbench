@@ -18,7 +18,7 @@
 - **图表工坊**：自动提取漏掉的图表可手动拖框截取；数据表可从 Excel/PDF 粘贴、在线改数、改图注。
 - **撰写台**：新建报告、编辑正文、插入已确认卡片、插入图表/数据表、维护大纲与字数。
 - **文档文件夹**：知识库卡片与图表都按上传文档分组，左侧文件夹可按文档筛选。
-- **撰写双模式**：AI 自动生成与自由撰写；AI 可只参考现有资料，也可在用户确认后检索公开网络补充；报告可保存、改名、改状态、删除。\n- **MOKI 资料库桥接**：从 MOKI 的本地索引导入 PDF/DOCX/TXT/MD；分析后的正文、章节、卡片 JSON、图表 PNG 可导出到 MOKI 的本地文件夹映射。
+- **撰写双模式**：AI 自动生成与自由撰写；生成前可逐张选择资料卡、逐份选择上传文档，也可在用户确认后叠加公开网络检索；报告可保存、改名、改状态、删除。\n- **MOKI 资料库桥接**：从 MOKI 的本地索引导入 PDF/DOCX/TXT/MD；分析后的正文、章节、卡片 JSON、图表 PNG 可导出到 MOKI 的本地文件夹映射。
 
 ## MOKI 资料库
 
@@ -35,11 +35,11 @@
 
 ### 从 GitHub Release（推荐）
 
-1. 在仓库的 **Releases** 下载 `research-report-workbench-0.12.8.tgz`。
+1. 在仓库的 **Releases** 下载 `research-report-workbench-0.12.9.tgz`。
 2. 安装：
 
 ```powershell
-dsh plugin add C:\path\to\research-report-workbench-0.12.8.tgz
+dsh plugin add C:\path\to\research-report-workbench-0.12.9.tgz
 ```
 
 如果 `dsh` 不在 PATH，可以用 DSH 安装目录里的 `resources/runtime/cli/bin/dsh.cmd`。
@@ -58,7 +58,7 @@ cd research-report-workbench
 npm install
 npm test
 npm pack
-dsh plugin add .\research-report-workbench-0.12.8.tgz
+dsh plugin add .\research-report-workbench-0.12.9.tgz
 ```
 
 > 不要把源码目录直接 `dsh plugin add`：宿主会把目录移进 profile。开发时先 `npm pack`，再装 tgz。
@@ -101,7 +101,7 @@ GitHub Release 附件用：
 
 ```powershell
 npm pack
-# 上传 research-report-workbench-0.12.8.tgz
+# 上传 research-report-workbench-0.12.9.tgz
 ```
 
 ## 结构
