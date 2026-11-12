@@ -313,3 +313,32 @@ test('reader text mode exposes font size controls', () => {
   assert.match(html, /15px/)
   assert.match(html, /fontSize:15px/)
 })
+
+test('writer exposes AI/free categories, save and delete', () => {
+  const html = render(fakeReact.createElement(mod.__components.Writer, {
+    report: demoReport,
+    reports: [demoReport, { ...demoReport, id: 'r2', title: '自由报告', kind: 'free' }],
+    cards: [],
+    onOpenReport() {},
+    onCreate() {},
+    onReport() {},
+    onDeleteReport() {},
+    onGoLibrary() {},
+    notify() {},
+  }))
+  assert.match(html, /AI 生成/)
+  assert.match(html, /自由撰写/)
+  assert.match(html, /删除/)
+  assert.match(html, /保存/)
+})
+
+test('new report modal offers AI generation and free writing', () => {
+  const html = render(fakeReact.createElement(mod.__components.NewReportModal, {
+    confirmed: [{ id: 'c1' }],
+    onCreate() {},
+    onClose() {},
+  }))
+  assert.match(html, /AI 自动生成/)
+  assert.match(html, /自由撰写/)
+  assert.match(html, /生成研报/)
+})

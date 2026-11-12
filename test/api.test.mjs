@@ -128,6 +128,34 @@ test('api: create source, ask, analyze, confirm, report', async () => {
     const savedBody = await saved.json()
     assert.equal(savedBody.report.status, 'reviewing')
 
+    const freeRes = await fetch(app.base + '/reports', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ title: '自由撰写测试', kind: 'free' }),
+    })
+    const free = (await freeRes.json()).report
+    assert.equal(free.kind, 'free')
+    const freeSave = await fetch(app.base + '/reports/' + free.id, {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ content: '自由撰写正文，可随时保存。' }),
+    })
+    assert.match((await freeSave.json()).report.content, /自由撰写正文/)
+    const freeDelete = await fetch(app.base + '/reports/' + free.id, { method: 'DELETE' })
+    assert.equal(freeDelete.status, 200)
+    assert.equal((await (await fetch(app.base + '/reports/' + free.id)).json()).error.code, 'report_not_found')
+
+    const generatedRes = await fetch(app.base + '/reports/generate', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ title: 'AI 自动生成测试', mode: 'quick' }),
+    })
+    const generated = await generatedRes.json()
+    assert.equal(generated.report.kind, 'ai')
+    assert.match(generated.report.content, /AI 自动生成测试/)
+    assert.ok(generated.report.citations.length > 0)
+    await fetch(app.base + '/reports/' + generated.report.id, { method: 'DELETE' })
+
     const overview = await (await fetch(app.base + '/overview')).json()
     assert.equal(overview.counts.sources, 1)
     assert.equal(overview.counts.confirmed, 1)
