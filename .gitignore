@@ -1,0 +1,13 @@
+node_modules/
+package-lock.json
+npm-debug.log*
+*.tgz
+artifacts/
+.dsh/
+*.db
+*.db-journal
+.env
+.env.*
+.DS_Store
+Thumbs.db
+coverage/
