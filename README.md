@@ -120,6 +120,18 @@ lib/extract.js   DOCX/PDF 零依赖兜底
 lib/client.js    左栏图标 + 主面板（React.createElement，无构建）
 ```
 
+## 第三方与致谢
+
+本项目的 MOKI 资料库桥接是独立实现，**不包含、也不打包 MOKI 的源代码**；它只读取用户本机的 MOKI 本地索引，并写入用户自行映射的本地文件夹。MOKI 需要用户单独安装。
+
+- **MOKI / dsh-moki-library**
+  - 仓库：https://github.com/JKZeng-cell/moki-library-for-dsh
+  - License：MIT
+  - Copyright (c) 2026 JKZeng
+  - 本项目与 MOKI 作者无隶属或背书关系；MOKI 名称仅用于说明兼容对象。
+
+完整 MIT 声明与第三方说明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+
 ## License
 
 MIT

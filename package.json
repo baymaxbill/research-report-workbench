@@ -18,11 +18,20 @@
     "icon.svg",
     "cordis.patch.yml",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
   ],
   "scripts": {
     "test": "node --test test/*.mjs",
     "check": "node --check lib/client.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baymaxbill/research-report-workbench.git"
+  },
+  "homepage": "https://github.com/baymaxbill/research-report-workbench#readme",
+  "bugs": {
+    "url": "https://github.com/baymaxbill/research-report-workbench/issues"
   },
   "dependencies": {
     "@napi-rs/canvas": "^0.1.80",
