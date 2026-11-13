@@ -35,11 +35,11 @@
 
 ### 从 GitHub Release（推荐）
 
-1. 在仓库的 **Releases** 下载 `research-report-workbench-0.12.9.tgz`。
+1. 在仓库的 **Releases** 下载 `research-report-workbench-0.12.10.tgz`。
 2. 安装：
 
 ```powershell
-dsh plugin add C:\path\to\research-report-workbench-0.12.9.tgz
+dsh plugin add C:\path\to\research-report-workbench-0.12.10.tgz
 ```
 
 如果 `dsh` 不在 PATH，可以用 DSH 安装目录里的 `resources/runtime/cli/bin/dsh.cmd`。
@@ -58,7 +58,7 @@ cd research-report-workbench
 npm install
 npm test
 npm pack
-dsh plugin add .\research-report-workbench-0.12.9.tgz
+dsh plugin add .\research-report-workbench-0.12.10.tgz
 ```
 
 > 不要把源码目录直接 `dsh plugin add`：宿主会把目录移进 profile。开发时先 `npm pack`，再装 tgz。
@@ -101,7 +101,7 @@ GitHub Release 附件用：
 
 ```powershell
 npm pack
-# 上传 research-report-workbench-0.12.9.tgz
+# 上传 research-report-workbench-0.12.10.tgz
 ```
 
 ## 结构
