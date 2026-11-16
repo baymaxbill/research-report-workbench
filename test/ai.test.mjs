@@ -8,6 +8,7 @@ import { openStore } from '../lib/db.js'
 import { createApi } from '../lib/api.js'
 import { createAi, buildAnalyzePrompt, parseCards, parseCard, selectBlocks } from '../lib/ai.js'
 import { groupItems, cleanPageText } from '../lib/pdftext.js'
+import { buildPdfBlocks } from '../lib/parse.js'
 
 const BLOCKS = [
   { id: 'b1', heading: true, text: '1 行业' },
@@ -210,3 +211,27 @@ test('cleanPageText skips chart table-of-contents pages', () => {
   assert.equal(cleanPageText(text), '')
 })
 
+test('groupItems separates a contact sidebar from the body column', () => {
+  const items = []
+  for (let i = 0; i < 8; i += 1) {
+    items.push({ str: '正文第' + (i + 1) + '行', transform: [1, 0, 0, 1, 10, 200 - i * 10], width: 100 })
+  }
+  items.push(
+    { str: '分析师甲 执业证书编号：S0860514050004', transform: [1, 0, 0, 1, 300, 200], width: 90 },
+    { str: 'a@example.com', transform: [1, 0, 0, 1, 300, 190], width: 70 },
+    { str: '电话：021-63326320', transform: [1, 0, 0, 1, 300, 180], width: 70 },
+  )
+  const text = groupItems(items)
+  assert.match(text, /正文第1行/)
+  assert.match(text, /正文第8行/)
+  assert.doesNotMatch(text, /example\.com/)
+  assert.doesNotMatch(text, /执业证书编号/)
+})
+
+test('buildPdfBlocks merges PDF hard-wrapped lines into paragraphs', () => {
+  const blocks = buildPdfBlocks('【第 1 页】\n核心观点\n这是用于触发标题判断的一段足够长的正文内容，长度必须超过四十四个字符，所以这里再补充一些文字。\n正文第一行，\n正文第二行。\n⚫ 第二段开始\n继续写。')
+  assert.equal(blocks[0].text, '【第 1 页】')
+  assert.ok(blocks.some((block) => block.text === '核心观点' && block.heading))
+  assert.ok(blocks.some((block) => block.text === '正文第一行，正文第二行。'))
+  assert.ok(blocks.some((block) => block.text === '第二段开始继续写。'))
+})
